@@ -7,7 +7,7 @@ const box = document.querySelector("#boxes");
 let sizes = 30;
 
 create.addEventListener("click", createMarkup);
-destroy.addEventListener("click", createMyComponent);
+destroy.addEventListener("click", destroyMarkup);
 
 function createMarkup() {
   const inputValue = Number(input.value);
@@ -24,20 +24,24 @@ function createBoxes(amount) {
   box.innerHTML = "";
   sizes = 30;
 
+  const fragment = document.createDocumentFragment();
+
   
   for(let i = 0; i < amount; i++) {
     const myBox = document.createElement("div");
     myBox.style.width = `${sizes}px`;
     myBox.style.height = `${sizes}px`;
     myBox.style.backgroundColor = getRandomHexColor();
-    box.append(myBox);
+    fragment.appendChild(myBox);
 
     sizes += 10;
   }
+
+  box.appendChild(fragment);
 }
 
 
-function createMyComponent() {
+function destroyMarkup() {
   box.innerHTML = "";
   sizes = 30;
 }
